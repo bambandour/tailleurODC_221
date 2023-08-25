@@ -1,0 +1,24 @@
+  <div  class="container justify-content-center">
+    <div class="card-header"><h2 class="text-center">Liste des Articles</h2></div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Article</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th>Categorie</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody style=" padding: 0.2rem;">
+            <tr *ngFor="let article of articles" 
+            [article]="article"
+            (articleDeleted)="deleteArticle($event)"
+            (articleEdited)="editArticle($event)" class="app-item">
+            </tr>
+        </tbody>
+        </table>
+    </div>
+
+  </div>

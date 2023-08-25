@@ -1,0 +1,36 @@
+
+/* .form-check-label span {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem; 
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  } */
+  
+  #add{
+    position: relative;
+    color:blue;
+    /* right:52rem; */
+  }
+  #libelle{
+    /* position: absolute; */
+    padding-right: 0.75rem;
+    /* top: 05rem; */
+    /* font-weight:bolder; */
+    font-size: 20px;
+  }
+/* 
+  #inputText{
+    cursor: pointer;
+  } */
+  
+  .form-check-label span:hover {
+    background-color: #dedfe0;
+  }
+
+  
+
+  /* .form-check-input[type="checkbox"] {
+    margin-right: 0.5rem;
+  } */
+  

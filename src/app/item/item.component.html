@@ -1,0 +1,8 @@
+  <td>{{article.libelle}}</td>
+  <td>{{article.prix}}</td>
+  <td>{{article.stock}}</td>
+  <td>tissu</td>
+      <td>
+          <button type="button" class="m-1 text-success" (click)="editArticle()" style="border-radius: 0.5rem; " >Edit</button>
+          <button type="button" class="m-1 text-white" (click)="deleteArticle()" style="border-radius: 0.5rem; background-color: rgb(241, 12, 12);" >{{ deleteButtonText }}</button>
+      </td>
