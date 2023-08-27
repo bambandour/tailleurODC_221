@@ -48,6 +48,8 @@ export class CategorieComponent implements OnInit{
     }
     )
   }
+
+  
   chargerCategories():void{
     this.categoryService.getCategories().subscribe(
       (response:Data<Categorie>)=>{        
@@ -59,6 +61,7 @@ export class CategorieComponent implements OnInit{
       }
     )
   }
+
 
   chargerPage(event:number){
     this.currentPage=event

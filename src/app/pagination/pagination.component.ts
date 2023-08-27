@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Data } from '@angular/router';
 import { Article } from '../article';
 import { Link } from '../data';
 import { ArticleService } from '../services/article.service';
@@ -15,15 +16,9 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit(){
 
+
   }
 
-  pageChange(url:string){    
-    this.articleService.getArticles(url).subscribe(res=>{
-      this.links=res.links
-      this.articles=res.data
-      console.log(res.data);
-    }
-    )
-  }
+ 
 
 }

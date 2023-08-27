@@ -29,10 +29,6 @@ export class FormComponent implements OnInit{
   filteredFournisseurs: Fournisseur[] = [];
 
   @Input() editedArticle: Article | null = null;
-  // editForm!: FormGroup;
-
-  // filteredFournisseurs: Fournisseur[] |null = [];
-
 
   ngOnInit(): void {
     this.formGroup = this.formBuider.group({
@@ -42,18 +38,13 @@ export class FormComponent implements OnInit{
       categorie: ['', Validators.required],
       photo: ['', Validators.required],
       reference: [''], 
-      // fournisseurs: [''],
-
-      // fournisseurs: [['']],
-      fournisseurs: this.formBuider.array([''])
+      fournisseurs: [''],
+      // fournisseurs: this.formBuider.array([''])
     });
-    
     this.articleService.all().subscribe((res:datas<All>)=>{
-      this.fournisseurs=res.data.fournisseurs
-    })
-    
+      this.fournisseurs=res.data.fournisseurs;
+    });
   }
-
 
   // ngOnChanges() {
   //   if (this.editedArticle) {
@@ -121,7 +112,7 @@ export class FormComponent implements OnInit{
   }
 
 
-  updateFournisseursAutocomplete() {
+  updateFournisseurs() {
     const fournisseursControl = this.formGroup.get('fournisseurs');
     if (fournisseursControl) {
     // const searchTerm = this.formGroup.get('fournisseurs').value;

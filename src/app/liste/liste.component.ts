@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Article, Articles } from '../article';
+import { All, Article, Articles } from '../article';
+import { Data, datas, Link } from '../data';
 import { ArticleService } from '../services/article.service';
 
 @Component({
@@ -11,6 +12,10 @@ import { ArticleService } from '../services/article.service';
 export class ListeComponent implements OnInit{
   constructor(private articleService: ArticleService) {}
   @Input() articles!: Article[];
+  @Input() links:Link[] | undefined=[];
+
+  @Input()arts!:Article[]
+  // @Input() articles:Article[]=[];
 
   @Input() formGroup!:FormGroup;
   ngOnInit(){
@@ -36,6 +41,16 @@ export class ListeComponent implements OnInit{
     this.articleService.editArticle(article, article.id).subscribe(()=>{
       
     })
+  }
+
+  pageChange(url:string){    
+    this.articleService.getArticles(url).subscribe((res:Data<Article>)=>{
+      this.links=res.links;
+      this.arts=res.data
+      // this.articles=res.data;
+      console.log(res.data);
+    }
+    )
   }
 
 }

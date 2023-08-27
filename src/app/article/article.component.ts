@@ -9,7 +9,7 @@ import { CategorieService } from '../services/categorie.service';
 @Component({
   selector: 'app-article',
   template: `<app-form [alls]=alls></app-form>,
-  <app-liste [articles]=articles></app-liste>,
+  <app-liste [articles]=articles [links]="links"></app-liste>,
   <app-pagination></app-pagination>
   `,
   styleUrls: ['./article.component.css']
@@ -45,21 +45,21 @@ export class ArticleComponent implements OnInit{
     this.articleService.getArticles().subscribe((res:Data<Article>)=>{
           this.articles=res.data
           this.links=res.links
-            // console.log(this.articles);
+            // console.log(res);
         },
         (error)=>{
           console.error('Une erreur est survenue lors du chargement des articles',error)
         })
   }
 
-  pageChange(url:string){    
-    this.articleService.getArticles(url).subscribe(res=>{
-      this.links=res.links
-      this.articles=res.data
-      console.log(res.data);
-    }
-    )
-  }
+  // pageChange(url:string){    
+  //   this.articleService.getArticles(url).subscribe(res=>{
+  //     this.links=res.links
+  //     this.articles=res.data
+  //     console.log(res.data);
+  //   }
+  //   )
+  // }
 
   // chargerPage(event:number){
   //   this.currentPage=event

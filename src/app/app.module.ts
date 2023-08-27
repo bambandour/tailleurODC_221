@@ -12,6 +12,7 @@ import { FormComponent } from './form/form.component';
 import { ListeComponent } from './liste/liste.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ItemComponent } from './item/item.component';
+import { ArticleVenteComponent } from './article-vente/article-vente.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ItemComponent } from './item/item.component';
     FormComponent,
     ListeComponent,
     PaginationComponent,
-    ItemComponent
+    ItemComponent,
+    ArticleVenteComponent
   ],
   imports: [
     BrowserModule,
