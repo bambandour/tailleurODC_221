@@ -1,15 +1,20 @@
-export interface Data<T> {
-    data:T[];
+export interface MyData{
     links?:Link[];
     message:string;
     success:boolean;
 }
+export interface Data<T> extends MyData{
+    data:T[];
+    // links?:Link[];
+    // message:string;
+    // success:boolean;
+}
 
-export interface datas<T> {
+export interface datas<T> extends MyData{
     data:T;
-    links?:Link[];
-    message:string;
-    success:boolean;
+    // links?:Link[];
+    // message:string;
+    // success:boolean;
 }
 
 export interface Link {

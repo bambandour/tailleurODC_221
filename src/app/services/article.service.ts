@@ -27,7 +27,7 @@ export class ArticleService {
   }
 
   addArticle(article:Article):Observable<Data<Article>> {
-    return this.http.post<Data<Article>>(`http://localhost:8000/api/article`,article)
+    return this.http.post<Data<Article>>(`http://localhost:8000/api/articles`,article)
   }
 
   deleteArticle(id:number):Observable<Data<Article>>{
@@ -42,7 +42,7 @@ export class ArticleService {
   }
 
   editArticle(libelle:object,id:number):Observable<Data<Article>>{
-    return this.http.put<Data<Article>>(`http://localhost:8000/api/article/`+id,libelle)
+    return this.http.put<Data<Article>>(`http://localhost:8000/api/articles/`+id,libelle)
   }
 
 

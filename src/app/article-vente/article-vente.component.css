@@ -1,0 +1,8 @@
+.form-control {
+    max-width: 200px;
+  }
+  #photoPreview {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }

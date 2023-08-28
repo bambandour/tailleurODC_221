@@ -1,10 +1,13 @@
-export interface Categorie {
+export interface CatLib{
     id:number;
     libelle:string;
+}
+
+export interface Categorie extends CatLib{
     checked?:boolean;
 }
 
-export interface Fournisseur {
-    id:number;
-    libelle:string;
+export interface Fournisseur extends CatLib{
+    // id:number;
+    // libelle:string;
 }

@@ -12,25 +12,9 @@ import { ArticleService } from '../services/article.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit{
+export class FormComponent {
   // public formGroup!:FormGroup;
   constructor(private formBuider:FormBuilder, private articleService: ArticleService){
-    
-  }
-  @Input() formGroup!:FormGroup;
-  @Input() categories!:Categorie[];
-  @Input() fournisseurs!:Fournisseur[];
-  @Input() alls!:any[];
-  @Input() auto!:File;
-  url='./assets/front.png';
-  allFournisseurs!:Fournisseur[];
-  selectedFournisseurs: Fournisseur[] = [];
-
-  filteredFournisseurs: Fournisseur[] = [];
-
-  @Input() editedArticle: Article | null = null;
-
-  ngOnInit(): void {
     this.formGroup = this.formBuider.group({
       libelle: ['', Validators.required,Validators.min(3)],
       prix: ['', Validators.required],
@@ -45,54 +29,84 @@ export class FormComponent implements OnInit{
       this.fournisseurs=res.data.fournisseurs;
     });
   }
+  @Input() formGroup!:FormGroup;
+  @Input() categories!:Categorie[];
+  @Input() fournisseurs!:Fournisseur[];
+  @Input() alls!:any[];
+  @Input() auto!:File;
+  url='./assets/front.png';
+  allFournisseurs!:Fournisseur[];
 
-  // ngOnChanges() {
-  //   if (this.editedArticle) {
+  selectedFournisseurs: Fournisseur[] = [];
+
+  filteredFournisseurs: Fournisseur[] = [];
+
+  @Input() editedArticle: Article | null = null;
+
+  // ngOnInit(): void {
+    
+  // }
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes.editedArticle && this.editedArticle) {
   //     this.formGroup.patchValue({
   //       libelle: this.editedArticle.libelle,
-  //       prix: this.editedArticle.prix,
-  //       stock: this.editedArticle.stock,
-  //       categoorie: this.editedArticle.categorie,
-  //       photo: this.editedArticle.photo,
-  //       reference: this.editedArticle.reference,
-  //       fournisseurs: this.editedArticle.fournisseur,
+  //       date: this.editedArticle.prix
   //     });
   //   } else {
-  //     this.formGroup.reset();
+  //     this.editForm.reset();
   //   }
   // }
 
-  saveArticle() {
-    // if (this.editForm.valid) {
-      if (this.editedArticle) {
-        // const updatedArticle: Article = {
-        //   ...this.editedArticle,
-        //   libelle: this.formGroup.value.libelle,
-        //   prix: this.formGroup.value.date
-        // };
-      } else {
-        // const newArticle: Article = {
-        //   id: -1, // Remplacez par l'ID approprié
-        //   title: this.editForm.value.title,
-        //   date: this.editForm.value.date
-        // };
-      }
-    // }
+  ngOnChanges() {
+    if (this.editedArticle) {
+      this.formGroup.patchValue({
+        libelle: this.editedArticle.libelle,
+        prix: this.editedArticle.prix,
+        stock: this.editedArticle.stock,
+        categoorie: this.editedArticle.categorie,
+        photo: this.editedArticle.photo,
+        reference: this.editedArticle.reference,
+        fournisseurs: this.editedArticle.fournisseur,
+      });
+    } else {
+      this.formGroup.reset();
+    }
   }
 
+ 
+
   
-  addArticle(){  
-    console.log(this.formGroup.value);
+  saveArticle(){  
       
-    if (this.formGroup.valid) {
-      const dataForm:Article=this.formGroup.value
-      const libellePrefix = dataForm.libelle.substring(0, 3).toUpperCase();
-      const categorie = this.alls.find(c => c.libelle === this.formGroup.value.categorie);
-      // console.log(dataForm);
-      this.articleService.addArticle(dataForm).subscribe((res)=>{
-        console.log(res.data);
-      })
-    }
+    // if (this.formGroup.valid) {
+      if (this.editedArticle) {
+        const updatedArticle = {
+          ...this.editedArticle,
+          libelle: this.formGroup.value.libelle,
+          prix: this.formGroup.value.prix,
+          stock: this.formGroup.value.stock,
+          categorie: this.formGroup.value.categoorie,
+          photo: this.formGroup.value.photo,
+          reference: this.formGroup.value.reference,
+          fournisseurs: this.formGroup.value.fournisseur,
+        };
+        this.articleService.editArticle(updatedArticle,this.editedArticle.id).subscribe((res)=>{
+          console.log(res);
+          
+         })
+      }else{
+        console.log(this.formGroup.value);
+        const dataForm:Article=this.formGroup.value
+        const libellePrefix = dataForm.libelle.substring(0, 3).toUpperCase();
+        const categorie = this.alls.find(c => c.libelle === this.formGroup.value.categorie);
+        // console.log(dataForm);
+        this.articleService.addArticle(dataForm).subscribe((res)=>{
+          console.log(res.data);
+        })
+      }
+      
+    //}
   }
 
   libReference($event:Event){
@@ -117,18 +131,23 @@ export class FormComponent implements OnInit{
     if (fournisseursControl) {
     // const searchTerm = this.formGroup.get('fournisseurs').value;
     this.filteredFournisseurs = this.fournisseurs.filter(fournisseur =>
-      fournisseur.libelle.toLowerCase().includes(fournisseursControl.value.toLowerCase())
+      fournisseur.libelle.toLowerCase().includes(fournisseursControl.value.toLowerCase()) 
     );
     }
+    
+    
   }
+
 
   selectFournisseur(fournisseur: Fournisseur) {
     const fournisseursControl = this.formGroup.get('fournisseurs');
     if (fournisseursControl) {
         this.selectedFournisseurs.push(fournisseur);
         fournisseursControl.setValue('');
-    this.filteredFournisseurs = this.filteredFournisseurs.filter(item => item.id !== fournisseur.id);
-
+    this.filteredFournisseurs = this.filteredFournisseurs.filter(item => item.id == fournisseur.id);
+      console.log(this.filteredFournisseurs);
+      
+      
     // this.updateFournisseursAutocomplete();
     }
   }
@@ -147,7 +166,6 @@ export class FormComponent implements OnInit{
       const file = input.files[0];
       this.formGroup.patchValue({ file }); 
       this.url = URL.createObjectURL(file); 
-      
     }
   }
 

@@ -1,11 +1,11 @@
 import { Categorie, Fournisseur } from "./categorie";
-import { Link } from "./data";
+import { Link, MyData } from "./data";
 
-export interface Articles {
-    message: string
+export interface Articles extends MyData{
     data: Article[]
-    links?: Link[]
-    succes: boolean
+    // message: string
+    // links?: Link[]
+    // succes: boolean
 }
 export interface Article {
     id:number;

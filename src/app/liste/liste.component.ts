@@ -17,7 +17,10 @@ export class ListeComponent implements OnInit{
   @Input()arts!:Article[]
   // @Input() articles:Article[]=[];
 
+  editedArticle: Article | null = null;
+
   @Input() formGroup!:FormGroup;
+
   ngOnInit(){
 
     // console.log(this.articles.data);
@@ -37,11 +40,17 @@ export class ListeComponent implements OnInit{
     });
   }
   
+
   editArticle(article: Article) {
-    this.articleService.editArticle(article, article.id).subscribe(()=>{
-      
-    })
+    this.editedArticle = article;
+    console.log(this.editedArticle);
   }
+
+  // editArticle(article: Article) {
+  //   this.articleService.editArticle(article, article.id).subscribe((res)=>{
+  //     console.log(res);
+  //   })
+  // }
 
   pageChange(url:string){    
     this.articleService.getArticles(url).subscribe((res:Data<Article>)=>{

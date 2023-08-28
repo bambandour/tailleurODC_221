@@ -1,12 +1,12 @@
 <div class=" container card mt-3" >
-  <div class="card-header d-flex justify-content-center align-items-center shadow text-dark">
-      <h3>AJOUTER ARTICLE</h3>
+  <div class="card-header d-flex justify-content-center align-items-center shadow text-dark bg-primary">
+      <h3>AJOUTER ARTICLE CONFECTION</h3>
   </div>
 
   
   <div class="card-body">
       <div class="">
-         <form  [formGroup]="formGroup" (ngSubmit)="addArticle()" class="container">
+         <form  [formGroup]="formGroup"  class="container">
               <div class="row">
                   <div class="col">
                       <div class="col-md-10">
@@ -43,28 +43,36 @@
                                     {{ fournisseur.libelle }}
                                 </div>
                             </div>
+
                             <div class="selected-fournisseurs">
                               <div [ngStyle]="{'cursor':'pointer'}" *ngFor="let selected of selectedFournisseurs; let i = index" class="selected-fournisseur">
                                 {{ selected.libelle }}
                                 <button type="button" (click)="removeSelectedFournisseur(i)">delete</button>
+                                <!-- <input type="checkbox"  name="" id=""> -->
                               </div>
                             </div>
                           
                       </div>
                   </div>
-                  <div class="col border-dark ml-5" >
+                  <div class="col border-dark ml-5  " >
 
                     <div class="p-5" >
-                      <div class="col-md-4 mb-5" style="height: 150px; width: 300px; border-radius: 1px solid black; ">
+                      <div class="col-md-4 mb-5" style=" border-radius: 1px solid black; ">
                           <label for="photo" class="form-label">PHOTO</label>
-                          <!-- <input type="file" formControlName="photo" (change)="onPhotoChange($event)" id="photo" accept="image/*" required><br>
+                          <input
+                           type="file" formControlName="photo"
+                            (change)="onPhotoChange($event)" id="photo"
+                             accept="image/*" required
+                             class="form-control position-absolute left: 0; top: 0;"
+                          style=" opacity: 0; width: 250px; height: 250px"
+                             ><br>
                           <img [src]="url" alt="" class="formatImage" 
-                          style="width: 100%; height: 100%; object-fit: cover; padding-bottom: 3.75rem;"
-                          > -->
+                          style="width: 110%; height: 110%; object-fit: cover; padding-bottom: 3.75rem;"
+                          >
                       </div>
                     </div>
 
-                      <div class="col-md-10 mt-2">
+                      <div class="col-md-10 mt-1">
                           <label for="validationDefault01" class="form-label ml-5">Reference</label>
                           <input type="text" class="form-control" id="validationDefault01" formControlName="reference" [value]="formGroup.value.reference" required readonly>
                       </div>
@@ -72,7 +80,7 @@
                   </div>
                  </div>
                  <div class="col-md-6 text-right">
-                  <button type="submit" class="btn btn-primary"   [disabled]="formGroup.invalid">ajouter</button>
+                  <button type="submit" class="btn btn-primary" (click)="saveArticle()"  [disabled]="formGroup.invalid">{{ editedArticle ? 'Modifier' : 'Ajouter' }}</button>
                 </div>
               </form>
       </div>
