@@ -15,7 +15,7 @@ export class ServiceParentService {
   }
 
   add(article:U):Observable<T> {
-    return this.http.post<T>(this.apiPost+'article',article)
+    return this.http.post<T>(this.apiPost+'articles',article)
   }
 
   deleteArticle(id:number):Observable<T>{
@@ -30,7 +30,7 @@ export class ServiceParentService {
   }
 
   editArticle(libelle:object,id:number):Observable<T>{
-    return this.http.put<T>(this.apiPost+'article/'+id,libelle)
+    return this.http.put<T>(this.apiPost+'articles/'+id,libelle)
   }
 
 }
