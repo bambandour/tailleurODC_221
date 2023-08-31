@@ -1,29 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Article, Articles } from '../interfaces/article';
+import { ArticleVente } from 'src/app/interfaces/article';
 
 @Component({
-  selector: '.app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  selector: '.app-items',
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.css']
 })
-
-export class ItemComponent implements OnInit{
-  @Input() article!: Article;
-
+export class ItemsComponent implements OnInit{
+  @Input() article!: ArticleVente;
   @Input() formGroup!:FormGroup;
 
-  @Output() articleDeleted = new EventEmitter<Article>();
-  @Output() articleEdited = new EventEmitter<Article>();
-
-  isDeleting = false;
-  countdown = 5;
-  countdownInterval: any;
-  deleteButtonText = 'Supprimer';
+  @Output() articleDeleted = new EventEmitter<ArticleVente>();
+  @Output() articleEdited = new EventEmitter<ArticleVente>();
 
   ngOnInit(){
+
   }
+  isDeleting = false;
+  countdown = 4;
+  countdownInterval: any;
+  deleteButtonText = 'Supprimer';
 
   deleteArticle() {
     if (this.isDeleting) {
@@ -41,10 +38,6 @@ export class ItemComponent implements OnInit{
         }
       }, 1000);
     }
-  }
-
-  editArticle() {
-    this.articleEdited.emit(this.article);
   }
 
 }

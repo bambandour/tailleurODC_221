@@ -13,6 +13,9 @@ import { ListeComponent } from './liste/liste.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ItemComponent } from './item/item.component';
 import { ArticleVenteComponent } from './article-vente/article-vente.component';
+import { ListComponent } from './article-vente/list/list.component';
+import { FormulaireComponent } from './article-vente/formulaire/formulaire.component';
+import { ItemsComponent } from './article-vente/list/items/items.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { ArticleVenteComponent } from './article-vente/article-vente.component';
     ListeComponent,
     PaginationComponent,
     ItemComponent,
-    ArticleVenteComponent
+    ArticleVenteComponent,
+    ListComponent,
+    FormulaireComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

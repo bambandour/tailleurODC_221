@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { All, Article, Articles } from '../article';
-import { Data, datas, Link } from '../data';
+import { All, Article, Articles } from '../interfaces/article';
+import { Data, datas, Link } from '../interfaces/data';
 import { ArticleService } from '../services/article.service';
 
 @Component({
@@ -17,7 +17,9 @@ export class ListeComponent implements OnInit{
   @Input()arts!:Article[]
   // @Input() articles:Article[]=[];
 
-  editedArticle: Article | null = null;
+  @Output()editedArticle: Article | null = null;
+
+  @Output() editRequested = new EventEmitter<Article>();
 
   @Input() formGroup!:FormGroup;
 
@@ -42,9 +44,12 @@ export class ListeComponent implements OnInit{
   
 
   editArticle(article: Article) {
-    this.editedArticle = article;
-    console.log(this.editedArticle);
+    // this.editedArticle = article;
+    // console.log(this.editedArticle);
+    this.editRequested.emit(article)
   }
+
+  
 
   // editArticle(article: Article) {
   //   this.articleService.editArticle(article, article.id).subscribe((res)=>{

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 // import { environment } from 'src/environments/environment';
-import { All, Article } from '../article';
-import { Categorie } from '../categorie';
-import { Data, datas } from '../data';
+import { All, Article } from '../interfaces/article';
+import { Categorie } from '../interfaces/categorie';
+import { Data, datas } from '../interfaces/data';
 
 
 @Injectable({

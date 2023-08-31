@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { All, Article, Articles } from '../article';
-import { Categorie, Fournisseur } from '../categorie';
-import { Data, datas, Link } from '../data';
+import { ListComponent } from '../article-vente/list/list.component';
+import { FormComponent } from '../form/form.component';
+import { All, Article, Articles } from '../interfaces/article';
+import { Categorie, Fournisseur } from '../interfaces/categorie';
+import { Data, datas, Link } from '../interfaces/data';
+import { ListeComponent } from '../liste/liste.component';
 import { ArticleService } from '../services/article.service';
 import { CategorieService } from '../services/categorie.service';
 
 @Component({
   selector: 'app-article',
-  template: `<app-form [alls]=alls></app-form>,
-  <app-liste [articles]=articles [links]="links"></app-liste>,
+  template: ` 
+  <app-form [alls]=alls   ></app-form>
+  <app-liste [articles]=articles [links]=links (editRequested)="editArticle($event)" ></app-liste>
   <app-pagination></app-pagination>
+  
   `,
   styleUrls: ['./article.component.css']
 })
@@ -30,15 +35,19 @@ export class ArticleComponent implements OnInit{
   links:Link[]| undefined=[]
   active:Link[]=[]
 
-  constructor(private formBuilder: FormBuilder, private articleService: ArticleService) { }  
+  @ViewChild(FormComponent) formComponent!:FormComponent
+
+  constructor(private formBuilder: FormBuilder, private articleService: ArticleService) { } 
+
   ngOnInit(): void {
     this.articleService.all().subscribe((res?:any)=>{
-      this.alls=res.data.categories
+      this.alls=res.data.categories  
     }
     );
     this.getArticles()
     this.getFournisseurs()
     this.getPagination()
+  
   }
 
   getArticles(){
@@ -92,6 +101,12 @@ export class ArticleComponent implements OnInit{
         console.log(res.data);
         this.articles = this.articles.filter(a => a.id !== this.article.id);
     });
+  }
+  editArticle(article:Article){
+    console.log(article);
+    this.formComponent.formGroup.patchValue(article)
+    // console.log(this.formComponent.formGroup.value);
+    
   }
 
 

@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 // import { FormGroup, Validators } from '@angular/forms';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { All, Article } from '../article';
-import { Categorie, Fournisseur } from '../categorie';
-import { datas } from '../data';
+import { All, Article } from '../interfaces/article';
+import { Categorie, Fournisseur } from '../interfaces/categorie';
+import { datas } from '../interfaces/data';
 import { ArticleService } from '../services/article.service';
 
 
@@ -21,7 +21,7 @@ export class FormComponent {
       stock: ['', Validators.required],
       categorie: ['', Validators.required],
       photo: ['', Validators.required],
-      reference: [''], 
+      reference: [''],
       fournisseurs: [''],
       // fournisseurs: this.formBuider.array([''])
     });
@@ -47,39 +47,44 @@ export class FormComponent {
     
   // }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes.editedArticle && this.editedArticle) {
+
+
+  // ngOnChanges() {
+  //   if (this.editedArticle) {
   //     this.formGroup.patchValue({
   //       libelle: this.editedArticle.libelle,
-  //       date: this.editedArticle.prix
+  //       prix: this.editedArticle.prix,
+  //       stock: this.editedArticle.stock,
+  //       categoorie: this.editedArticle.categorie,
+  //       photo: this.editedArticle.photo,
+  //       reference: this.editedArticle.reference,
+  //       fournisseurs: this.editedArticle.fournisseur,
   //     });
   //   } else {
-  //     this.editForm.reset();
+  //     this.formGroup.reset();
   //   }
   // }
 
-  ngOnChanges() {
-    if (this.editedArticle) {
-      this.formGroup.patchValue({
-        libelle: this.editedArticle.libelle,
-        prix: this.editedArticle.prix,
-        stock: this.editedArticle.stock,
-        categoorie: this.editedArticle.categorie,
-        photo: this.editedArticle.photo,
-        reference: this.editedArticle.reference,
-        fournisseurs: this.editedArticle.fournisseur,
-      });
-    } else {
-      this.formGroup.reset();
-    }
-  }
-
  
-
+  // loadEditedArticle(article: Article) {
+  //   if (this.editedArticle) {
+  //         this.formGroup.patchValue({
+  //           libelle: this.editedArticle.libelle,
+  //           prix: this.editedArticle.prix,
+  //           stock: this.editedArticle.stock,
+  //           categoorie: this.editedArticle.categorie,
+  //           photo: this.editedArticle.photo,
+  //           reference: this.editedArticle.reference,
+  //           fournisseurs: this.editedArticle.fournisseur,
+  //         });
+  //       } else {
+  //         this.formGroup.reset();
+  //       }
+  // }
   
   saveArticle(){  
       
-    // if (this.formGroup.valid) {
+    if (this.formGroup.valid) {
       if (this.editedArticle) {
         const updatedArticle = {
           ...this.editedArticle,
@@ -106,7 +111,7 @@ export class FormComponent {
         })
       }
       
-    //}
+    }
   }
 
   libReference($event:Event){
@@ -146,8 +151,7 @@ export class FormComponent {
         fournisseursControl.setValue('');
     this.filteredFournisseurs = this.filteredFournisseurs.filter(item => item.id == fournisseur.id);
       console.log(this.filteredFournisseurs);
-      
-      
+       
     // this.updateFournisseursAutocomplete();
     }
   }

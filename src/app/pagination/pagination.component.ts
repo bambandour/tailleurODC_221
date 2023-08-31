@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
-import { Article } from '../article';
-import { Link } from '../data';
+import { Article } from '../interfaces/article';
+import { Link } from '../interfaces/data';
 import { ArticleService } from '../services/article.service';
 
 @Component({

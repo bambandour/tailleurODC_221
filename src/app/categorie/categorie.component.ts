@@ -1,7 +1,7 @@
 import { Component ,OnInit} from '@angular/core';
 import { disableDebugTools } from '@angular/platform-browser';
-import { Categorie } from '../categorie';
-import { Data, Link } from '../data';
+import { Categorie } from '../interfaces/categorie';
+import { Data, Link } from '../interfaces/data';
 import { CategorieService } from '../services/categorie.service';
 
 @Component({
