@@ -6,7 +6,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Libellé</th>
+              <th>Libellé</th>     
               <th>Quantité stock</th>
               <th>Article de Confection</th>
               <th>Action</th>
@@ -17,6 +17,7 @@
             *ngFor="let article of articleVentes" 
             [article]="article"
             (articleDeleted)="deleteArticle($event)"
+            (articleEdited)="editArticle($event)"
            
             class="app-items">
               

@@ -1,6 +1,6 @@
 
 <div class="card mb-4">
-    <div class="card-header bg-primary">
+    <div class="card-header" style="background-color:rgb(109, 109, 246)">
       <h2 class="card-title text-center " style="color: white;">Article Vente</h2>
     </div>
     <div class="card-body">
@@ -20,7 +20,7 @@
               (change)="onPhotoChange($event)"
               id="photo" formControlName="photo"
             />
-            <img [src]="url" alt="" class="formatImage rounded-circle" 
+            <img [src]="photo.value" alt="" class="formatImage rounded-circle" 
                           style="width: 105%; height: 105%; object-fit: cover; padding-right: 0.2rem;"
                           >
           </div>
@@ -31,6 +31,11 @@
             <label for="libelle" class="form-label">Libellé</label>
             <input type="text" formControlName="libelle" (input)="libReference($event)" class="form-control" id="libelle" required />
           </div>
+          <div *ngIf="articleForm.controls['libelle'].invalid && (articleForm.controls['libelle'].dirty || articleForm.controls['libelle'].touched)" >
+            <div *ngIf="articleForm.controls['libelle'].errors" style="color: red;">
+            Veuillez entrer le libelle
+          </div>
+        </div>
           <div
             class="col"
             style="margin-left: -11em; width: 40%; margin-top: -0.1em"
@@ -106,7 +111,7 @@
                           <li *ngFor="let suggestion of suggestions" style="list-style: none;"  (click)="selectSuggestion(suggestion,i)" >{{ suggestion.libelle }}</li>
                         </ul>
                       </td>
-                      <td><input type="number" formControlName="quantite" class="form-control" id=""></td>
+                      <td><input type="number" formControlName="quantite"  class="form-control" id=""></td>
                       <td><button type="button" style="border: none; background-color: transparent;" (click)="removeConfection(i)"><i class="fa-solid fa-trash text-danger"></i></button></td>
                     </tr>
                   </tbody>
@@ -150,6 +155,7 @@
                         class="form-control"
                         id="pourcentage"
                         formControlName="marge"
+                        
                       />
                     </div >
                     
@@ -175,7 +181,7 @@
 
             <div class="row mb-3">
               <div class="col-md-12 mt-3">
-                <button type="submit" [disabled]="" class="btn btn-primary float-end justify-content-center">
+                <button type="submit" [disabled]="" class="btn  float-end justify-content-center" style="background-color:rgb(109, 109, 246)">
                   Save
                 </button>
               </div>

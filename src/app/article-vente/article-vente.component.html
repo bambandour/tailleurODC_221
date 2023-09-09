@@ -1,4 +1,4 @@
 <div class="container mt-5">
-    <app-formulaire [formGroup]="articleForm"></app-formulaire>
-    <app-list [articleVentes]="articleVentes" ></app-list>
+    <app-formulaire [formGroup]="articleForm" ></app-formulaire>
+    <app-list [articleVentes]="articleVentes" (editRequested)="editArticle($event)" ></app-list>
 </div>

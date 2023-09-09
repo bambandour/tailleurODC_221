@@ -13,6 +13,7 @@ export class ItemsComponent implements OnInit{
 
   @Output() articleDeleted = new EventEmitter<ArticleVente>();
   @Output() articleEdited = new EventEmitter<ArticleVente>();
+  
 
   ngOnInit(){
 
@@ -20,7 +21,7 @@ export class ItemsComponent implements OnInit{
   isDeleting = false;
   countdown = 4;
   countdownInterval: any;
-  deleteButtonText = 'Supprimer';
+  deleteButtonText = '';
 
   deleteArticle() {
     if (this.isDeleting) {
@@ -32,12 +33,17 @@ export class ItemsComponent implements OnInit{
         if (this.countdown === 0) {
           clearInterval(this.countdownInterval);
           this.isDeleting = false;
-          this.deleteButtonText = 'Supprimer';
+          this.deleteButtonText = '';
         } else {
           this.deleteButtonText = `OK (${this.countdown})`;
         }
       }, 1000);
     }
+  }
+
+  editArticle() {
+    this.articleEdited.emit(this.article);
+    // console.log(this.article);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ArticleVente } from 'src/app/interfaces/article';
 import { ArticleVenteService } from 'src/app/services/article-vente.service';
@@ -13,6 +13,8 @@ export class ListComponent implements OnInit{
   @Input() articleVentes!: ArticleVente[];
   @Input()artVentes!:ArticleVente[];
   @Input() formGroup!:FormGroup;
+  @Output() editRequested = new EventEmitter<ArticleVente>();
+  @Output()editedArticle: ArticleVente| null = null;
 
   ngOnInit(){
 
@@ -22,6 +24,10 @@ export class ListComponent implements OnInit{
     this.articleService.delete(article.id).subscribe(() => {
       this.articleVentes = this.articleVentes.filter(a => a.id !== article.id);
     });
+  }
+
+  editArticle(article: ArticleVente) {
+    this.editRequested.emit(article)
   }
 
 }

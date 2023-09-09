@@ -1,7 +1,7 @@
 <td>{{article.libelle}}</td>
 <td>{{article.stock}}</td>
-<td>{{article.libelle}}</td>
+<td>tissu-2;bouton_manche-2;fil_noir3</td>
 <td>
-    <button type="button" class="m-1 text-success"  style="border-radius: 0.5rem; " >Edit</button>
-    <button type="button" class="m-1 text-white" (click)="deleteArticle()" style="border-radius: 0.5rem; background-color: rgb(241, 12, 12);" >{{ deleteButtonText }}</button>
+    <button type="button" class="m-1 text-success"  style="border-radius: 0.5rem; border: none; background-color: transparent; "  (click)="editArticle()"><i class="fa-solid fa-pen-to-square text-warning"></i></button>
+    <button type="button" class="m-1 text-white" (click)="deleteArticle()" style="border-radius: 0.5rem; border: none; background-color:transparent" ><i class="fa-solid fa-trash text-danger">{{ deleteButtonText }}</i></button>
 </td>

@@ -8,6 +8,10 @@ export interface Articles extends MyData{
     // links?: Link[]
     // succes: boolean
 }
+export interface ArtVente extends MyData{
+    data: ArticleVente[]
+}
+
 export interface Article extends Art{
     prix:number;
     fournisseur:string[];
@@ -30,7 +34,7 @@ export interface ArticleVente extends Art{
     cout_fabrication:number;
     promo:boolean;
     valeur:number;
-    confections:FormArray
+    confections:Confection[]
 }
 
 
@@ -42,8 +46,9 @@ export interface All{
 
 export interface Vente{
     categories:Categorie[];
-    articleVente:Articles;
+    articleVente:ArtVente;
     articleConfection:Article[];
+    article_vente:ArticleVente[]
 }
 
 export interface Suggestion extends Confection{
@@ -53,4 +58,6 @@ export interface Confection {
     id: number; 
     quantite: number|null;
     libelle?: string;
+    prix?:number;
+    categorie?:Categorie;
 }

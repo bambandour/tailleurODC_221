@@ -47,14 +47,12 @@ export class ArticleComponent implements OnInit{
     this.getArticles()
     this.getFournisseurs()
     this.getPagination()
-  
   }
 
   getArticles(){
     this.articleService.getArticles().subscribe((res:Data<Article>)=>{
           this.articles=res.data
           this.links=res.links
-            // console.log(res);
         },
         (error)=>{
           console.error('Une erreur est survenue lors du chargement des articles',error)
@@ -81,7 +79,6 @@ export class ArticleComponent implements OnInit{
     });
   }
 
-
   getFournisseurs(){
     this.articleService.all().subscribe((res:datas<All>)=>{
       this.fournisseurs=res.data.fournisseurs
@@ -106,7 +103,6 @@ export class ArticleComponent implements OnInit{
     console.log(article);
     this.formComponent.formGroup.patchValue(article)
     // console.log(this.formComponent.formGroup.value);
-    
   }
 
 

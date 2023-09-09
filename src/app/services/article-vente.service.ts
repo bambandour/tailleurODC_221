@@ -21,6 +21,9 @@ export class ArticleVenteService {
    delete(id:number){
     return this.avService.deleteArticle(id)
    }
+   edit(article:ArticleVente,id:number){
+    return this.avService.editArticle(article,id)
+   }
    
 
 }
